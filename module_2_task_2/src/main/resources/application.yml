@@ -1,7 +1,7 @@
 kafka:
   topic:
     employee:
-      name: employee-topic
+      name: com.epam.schema.employee
   bootstrap-server: localhost:19092
 
 spring:
@@ -10,8 +10,10 @@ spring:
       enabled: true
     properties:
       schema.registry.url: http://localhost:8081
+      auto.register.schemas: false
+      use.latest.version: true
     consumer:
-      groupId: epm-plx.consumer.onboarding
+      groupId: com.epam.javaAdvanced
       autoOffsetReset: earliest
       # Configures the Spring Kafka ErrorHandlingDeserializer that delegates to the 'real' deserializers
       key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer

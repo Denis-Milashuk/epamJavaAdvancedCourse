@@ -14,5 +14,13 @@
     {
         "name": "lastName",
         "type": "string"
+    },
+    {
+        "name": "schemaId",
+        "type": "int"
+    },
+    {
+        "name": "schemaVersion",
+        "type": "int"
     }]
 }

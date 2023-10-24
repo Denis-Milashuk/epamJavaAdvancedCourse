@@ -1,5 +1,7 @@
 package com.epam.javaAdvanced.kafka.config;
 
+import io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient;
+import io.confluent.kafka.schemaregistry.client.SchemaRegistryClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -13,13 +15,21 @@ import java.util.Map;
 
 @Configuration
 @Slf4j
-public class KafkaTopicConfig {
+public class KafkaConfig {
 
     @Value("${kafka.bootstrap-server}")
     private String bootstrapAddress;
 
     @Value("${kafka.topic.employee.name}")
     private String topic;
+
+    @Value("${spring.kafka.producer.properties.schema.registry.url}")
+    private String url;
+
+    @Bean
+    public SchemaRegistryClient schemaRegistryClient() {
+        return new CachedSchemaRegistryClient(url, 16);
+    }
 
     @Bean
     public KafkaAdmin kafkaAdmin() {

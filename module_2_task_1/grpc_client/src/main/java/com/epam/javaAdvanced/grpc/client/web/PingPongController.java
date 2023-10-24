@@ -1,20 +1,19 @@
 package com.epam.javaAdvanced.grpc.client.web;
 
-import com.epam.javaAdvanced.grpc.PingPongRequest;
-import com.epam.javaAdvanced.grpc.PingPongServiceGrpc;
-import net.devh.boot.grpc.client.inject.GrpcClient;
+import com.epam.javaAdvanced.grpc.client.service.PingPongService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class PingPongController {
 
-    @GrpcClient("pingPongService")
-    private PingPongServiceGrpc.PingPongServiceBlockingStub pingPongClient;
+    private final PingPongService pingPongService;
 
     @GetMapping("/pingPong")
     public String pingPong(@RequestParam String message) {
-        return this.pingPongClient.sayPong(PingPongRequest.newBuilder().setMessage("Ping " + message).build()).getMessage();
+        return this.pingPongService.sayPong(message);
     }
 }

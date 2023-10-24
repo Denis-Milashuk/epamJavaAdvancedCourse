@@ -1,18 +1,18 @@
-# To test run step by step from root directory
+# To test run step by step from current directory
 Build application:
-```
-./mvnw clean install
+```shell
+../mvnw clean install
 ```
 Run docker compose with kafka and schema registry:
-```
-docker compose -f ./module_2_task_2/docker/docker-compose.yml up
+```shell
+docker-compose -f ./docker/docker-compose.yml up
 ```
 Run application:
-```
-java -jar ./module_2_task_2/target/module_2_task_2-0.0.1-SNAPSHOT.jar
+```shell
+java -jar ./target/module_2_task_2-0.0.1-SNAPSHOT.jar
 ```
 Call with curl:
-```
+```shell
 curl -X POST http://localhost:8080/employees -H "Content-Type: application/json" -d '{"id": 123, "firstName": "Dima", "lastName": "Milashuk"}'  
 ```
 Check log from consumer:
