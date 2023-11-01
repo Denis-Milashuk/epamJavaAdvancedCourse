@@ -1,0 +1,26 @@
+{
+    "type": "record",
+    "name": "Employee",
+    "namespace": "com.epam.schema.employee",
+    "fields": [
+    {
+        "name": "id",
+        "type": "int"
+    },
+    {
+        "name": "firstName",
+        "type": "string"
+    },
+    {
+        "name": "lastName",
+        "type": "string"
+    },
+    {
+        "name": "schemaId",
+        "type": "int"
+    },
+    {
+        "name": "schemaVersion",
+        "type": "int"
+    }]
+}

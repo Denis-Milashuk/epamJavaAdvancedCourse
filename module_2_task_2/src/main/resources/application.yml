@@ -1,0 +1,34 @@
+kafka:
+  topic:
+    employee:
+      name: com.epam.schema.employee
+  bootstrap-server: localhost:19092
+
+spring:
+  kafka:
+    jaas:
+      enabled: true
+    properties:
+      schema.registry.url: http://localhost:8081
+      auto.register.schemas: false
+      use.latest.version: true
+    consumer:
+      groupId: com.epam.javaAdvanced
+      autoOffsetReset: earliest
+      # Configures the Spring Kafka ErrorHandlingDeserializer that delegates to the 'real' deserializers
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        specific.avro.reader: true
+        # Delegate deserializers
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: io.confluent.kafka.serializers.KafkaAvroDeserializer
+        session.timeout.ms: 25000
+    producer:
+      acks: all
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        schema.registry.url: http://localhost:8081
+    bootstrap-servers:
+      - ${kafka.bootstrap-server}
