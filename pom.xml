@@ -24,6 +24,7 @@
         <module>module_1_task_1</module>
         <module>module_2_task_1</module>
         <module>module_2_task_2</module>
+        <module>module_3_task_1</module>
     </modules>
 
     <dependencyManagement>
