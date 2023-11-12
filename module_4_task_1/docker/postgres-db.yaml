@@ -1,0 +1,13 @@
+services:
+  db:
+    container_name: postgres-security
+    image: postgres
+    environment:
+      POSTGRES_USER: myUser
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    restart: unless-stopped
